@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import url from "../../img/noun-url-1244044.svg";
 import './index.css'
 
-const Form = () => {
+const Form = ({addOredit}) => {
     const initialState = {
       url: '',
       descripcion: '',
       name: '',
-    }
+    } 
     const [values, setValues] = useState(initialState)
 
     const handelSubmit = (e) =>{
         e.preventDefault();
-        console.log(values);
+        // console.log(values);
+        addOredit(values)
     }
     const handelChange = (e) =>{
       const {name, value} = e.target
