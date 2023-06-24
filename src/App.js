@@ -1,12 +1,16 @@
 import "./App.css";
 import Form from "./components/Form/index";
-import Nav from "./components/Nav/index";
+import Show from "./components/show/Show";
+import Layout from "./components/layout/index";
 
 function App() {
   return (<>
-    <Nav/>
     <div className="container">
-    <Form/>
+      <Layout>
+      <Show/>
+      <Form/>
+
+      </Layout>
     </div>
   </>)
 }

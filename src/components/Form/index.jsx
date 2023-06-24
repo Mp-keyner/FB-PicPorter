@@ -17,7 +17,7 @@ const Form = () => {
     const handelChange = (e) =>{
       const {name, value} = e.target
       setValues({...values, [name]: value})
-      console.log(name, value);
+      // console.log(name, value);
     }
   return (
     <div>
