@@ -1,0 +1,18 @@
+.image{
+    width: 1pc;
+}
+.label{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 18pc;
+    padding: 1pc;
+    gap: 1pc;
+    border: 1px solid;
+}

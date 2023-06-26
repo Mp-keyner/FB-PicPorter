@@ -1,0 +1,22 @@
+.nav{
+    background-color: #232323;
+    color: white;
+    font-weight: 600;
+    font-family: system-ui;
+    height: 6pc;
+    padding: 0 1pc;
+}
+
+.logo{
+    width: 4pc;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    gap: 1pc;
+}
+
+li{
+    list-style: none !important;
+}
