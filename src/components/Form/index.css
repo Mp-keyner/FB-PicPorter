@@ -1,18 +1,45 @@
 .image{
-    width: 1pc;
-}
+    width: 2pc;
+} 
 .label{
     display: flex;
     align-items: center;
     gap: 6px;
 }
-
-
-form{
+.containerFormAdd{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1pc;
+    height: 86vh;
+}
+.custom-toast{
+    background-color: red;
+}
+.confor{
     display: flex;
     flex-direction: column;
-    width: 18pc;
+    align-items: center;
     padding: 1pc;
     gap: 1pc;
-    border: 1px solid;
+}
+.buttonsutmi{
+    padding: 0.4pc;
+    border-radius: 10px;
+    background: white
+}
+.formFb{
+    /* width: 100%;  */
+    display: flex;
+    flex-direction: column;
+    width: 21.pc;
+    padding: 1pc;
+    gap: 1pc;
+    /* border: 1px solid; */
+    align-items: center;
+}
+.centrar{
+    display: flex;
+    align-items: center;
+    gap: 1pc;
 }

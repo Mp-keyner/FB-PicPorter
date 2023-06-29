@@ -1,0 +1,153 @@
+.containerLogin{
+    width: 100%;
+    display: flex;
+}
+ 
+.containerDep{
+    width: 50%;
+    /* border: 1px solid red; */
+    height: 83.9vh;
+    position: relative;
+}
+.imgLogo{
+    width: 5pc;
+    position: absolute;
+    top: 1pc;
+    left: 1pc;
+}
+.imageIn{
+    background-image: url(../../img/fondo.png);
+    background-size: cover;
+    background-position: center ;
+    height: 100%;
+} 
+.textDep{
+    position: absolute;
+    top: 70%;
+    color: white;
+    font-family: system-ui;
+    text-align: center;
+}
+.derecha{
+    transition: all 0.9s ease-in-out;
+    width: 50%;
+    height: 83.9vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flecha{
+    width: 3pc;
+    transition: all 0.9s ease-in-out;
+    display: none ;
+  }
+.containerForm{
+    width: 60%;
+    height: 100%;
+    /* border: 1px solid red; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1pc;
+}
+
+.centrar{
+    display: flex;
+    align-items: center;
+    gap: 1pc;
+}
+.or{
+    justify-content: center;
+    width: 100%;
+}
+.or hr{
+    width: 38%;
+}
+.imageIcon{
+    width: 7pc;
+}
+.register{
+    width: 100%;
+}
+.wiev{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1pc;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="submit"],
+  select {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #232323;
+  }
+  
+  input[type="submit"] {
+    background-color: #232323;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #333;
+  }
+  
+@media screen and (max-width: 850px) {
+    .containerLogin {
+        flex-direction: column;
+    }
+    .containerDep, .derecha, .containerForm{
+        width: 100%;
+    }
+    .containerDep{
+        height: 20pc;
+    }
+    .derecha{
+        height: 34pc;
+    }
+    .containerForm{
+        width: 80%; 
+    }
+}  
+@media screen and (max-width: 400px){
+    .containerLogin {
+        flex-direction: column;
+    }
+    .containerDep, .derecha, .containerForm{
+        width: 100%;
+    }
+    .containerDep{
+        height: 83.9vh;
+    }
+    .derecha{
+        position: fixed;
+        background-color: white ;
+        top: 35pc;
+        height: 83.9vh;
+    }
+    .containerForm{
+        gap: 2pc;
+    }
+    .textDep{
+        top: 55%;
+    }
+    .flecha{
+        display: block;
+    }
+    /* body{
+        overflow: hidden;
+    } */
+}

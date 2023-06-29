@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .nav{
     background-color: #232323;
     color: white;
@@ -5,7 +9,16 @@
     font-family: system-ui;
     height: 6pc;
     padding: 0 1pc;
+    display: flex;
+    justify-content: space-between;
 }
+.containerLogout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
 
 .logo{
     width: 4pc;
@@ -16,7 +29,99 @@
     align-items: center;
     gap: 1pc;
 }
-
+.imgUser{
+    width: 2pc;
+    border-radius: 20px;
+}
 li{
     list-style: none !important;
+} 
+.cerrarSesion{
+    width: 9pc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 2pc;
+    background-color: transparent ;
+    border-radius: 10px;
+    color: white ;
+}
+.iniciSesion{
+    background-color: transparent;
+    padding: 6px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    font-size: 14px;
+}
+.navMovil{
+    margin-left: 20pc;
+}
+@media screen and (max-width: 850px){
+    .navMovil{
+        margin-left: 0pc;
+    }
+}
+@media screen and (max-width:400px) {
+    .nav{
+        padding: 0 10px;
+    }
+    .navMovil{
+        transition: all 0.6s ease-in-out;
+        padding: 2pc;
+        background: #232323;
+        position: fixed;
+        flex-direction: column;
+        top: 6pc;
+        right: -13pc;
+        height: 76%;
+        justify-content: space-between;
+    }
+    .ulMovil{
+        flex-direction: column;
+    font-size: 18px;
+    margin-top: 2pc;
+    }
+    .imgUser{
+        width: 4pc;
+    }
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        gap: 7px;
+      }
+      
+      .bar {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        transition: transform 0.3s ease;
+      }
+      
+      .menu-toggle.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg) translateX(2px);
+      }
+      
+      .menu-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-toggle.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg) translate(3px);
+      }
+      
+      .menu {
+        display: none;
+        /* Estilos del menú desplegable */
+      }
+      .show{
+        right: 0pc;
+      }
+      
 }

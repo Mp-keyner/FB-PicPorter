@@ -1,0 +1,10 @@
+.buttonGoogle{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 2.5pc;
+    background-color: transparent ;
+    border-radius: 10px;
+}
