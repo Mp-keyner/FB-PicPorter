@@ -11,11 +11,13 @@ import url from "../../img/noun-url-1244044.svg";
 import book from "../../img/book.svg";
 import dep from "../../img/dep.svg";
 import save from "../../img/save.svg";
+import docI from "../../img/docI.svg";
 
 const Form = () => {
   const [urlImgDes, setUrlImgDes] = useState("");
   const { user } = useContext(AuthContext);
   const [cargada, setCargada] = useState(true);
+  const [botonHabilitado, setBotonHabilitado] = useState(false);
   const navigate = useNavigate();
   const initialState = {
     url: "",
@@ -34,53 +36,66 @@ const Form = () => {
     try {
       await uploadBytes(refArchivo, archivo);
       setUrlImgDes(await getDownloadURL(refArchivo));
-      console.log("URL de IIMG => ", urlImgDes);
-      toast.success("Producto agregado con éxito");
+      console.log("URL de IMG => ", urlImgDes);
+      toast.success("Imagen cargada con éxito 👍🏼🏆");
+      setBotonHabilitado(true);
     } catch (error) {
-      toast.error("Error: ", error);
+      toast.error("Error: " + error);
     }
   };
 
   const handleSubmit = async (e) => {
-    const selectedFiles = e.target.querySelector('input[type="file"]').value;
-    const { name, url, descripcion } = values;
     e.preventDefault();
-    console.log(e);
-    console.log(selectedFiles);
+    const selectedFiles = e.target.querySelector('input[type="file"]').value;
+    const { name, url } = values;
 
-    if (url || selectedFiles) {
-      setCargada(!cargada);
-      console.log(cargada);
-    } else {
-      toast.error("Error: Por favor ingrese una URL o seleccione un archivo");
+    if (url && selectedFiles) {
+      toast.error(
+        "Error: Por favor, seleccione solo una opción: URL o archivo"
+      );
       return;
     }
 
-    if (name === "" || descripcion === "") {
-      toast.error("Error: Por favor llene todos los campos");
-    } else {
-      if (!cargada) {
-        toast.error("Error: Por favor llene los campos requeridos URL o FILES");
-      } else {
-        try {
-          const docRef = await addDoc(collectioUser, Newvalues);
-          console.log("Documento agregado con ID:", docRef.id);
-          setValues(initialState);
-          navigate("/");
-          toast.success("Producto agregado con éxito", {
-            toastClassName: "custom-toast",
-          });
-        } catch (error) {
-          console.error("Error al agregar el documento:", error);
-          toast.error("Error", error);
-        }
-      }
+    if (name.length > 18) {
+      toast.error(
+        "Error: Nombre demasiado largo. Por favor, ingrese menos de 18 caracteres."
+      );
+      return;
+    }
+
+    if (!url && !selectedFiles) {
+      toast.error("Error: Por favor, ingrese una URL o seleccione un archivo");
+      return;
+    }
+    if (!cargada) {
+      toast.error("Error: Por favor, llene los campos requeridos URL o FILES");
+      return;
+    }
+
+    try {
+      const docRef = await addDoc(collectioUser, Newvalues);
+      console.log("Documento agregado con ID:", docRef.id);
+      setValues(initialState);
+      navigate("/");
+      toast.success("Producto agregado con éxito", {
+        toastClassName: "custom-toast",
+      });
+    } catch (error) {
+      console.error("Error al agregar el documento:", error);
+      toast.error("Error: " + error);
     }
   };
 
-  const handelChange = async (e) => {
+  const handelChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+    if (url.length > 0) {
+      setBotonHabilitado(true);
+    }
+  };
+  const resetFile = () => {
+    const file = document.querySelector("#file");
+    file.value = "";
   };
 
   return (
@@ -129,16 +144,28 @@ const Form = () => {
             <p>Or</p>
             <hr />
           </div>
-          <div>
-            <input
-              type="file"
-              id="file"
-              name="file"
-              placeholder="Agregar Imagen"
-              onChange={handelFiles}
-            />
+          <div className="centrar">
+            <div class="input-file">
+              <input
+                type="file"
+                id="file"
+                name="file"
+                placeholder="Agregar Imagen"
+                onChange={handelFiles}
+              />
+              <label for="file" class="input-file-label centrar">
+                <img src={docI} alt="" />
+                Seleccionar archivo
+              </label>
+            </div>
+            <button className="buttonsutmi" onClick={resetFile}>
+              Reset
+            </button>
           </div>
-          <button className="centrar buttonsutmi">
+          <button
+            className="centrar buttonsutmi"
+            style={{ display: botonHabilitado ? "flex" : "none" }}
+          >
             <img src={save} alt="" />
             Save
           </button>
@@ -149,6 +176,158 @@ const Form = () => {
 };
 
 export default Form;
+
+// import React, { useContext, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { collection, addDoc } from "firebase/firestore";
+// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// import { db, uploadImage, storage } from "../../firebase";
+// import { AuthContext } from "../AuthContext";
+// import { toast } from "react-toastify";
+// import "./index.css";
+
+// import url from "../../img/noun-url-1244044.svg";
+// import book from "../../img/book.svg";
+// import dep from "../../img/dep.svg";
+// import save from "../../img/save.svg";
+
+// const Form = () => {
+//   const [urlImgDes, setUrlImgDes] = useState("");
+//   const { user } = useContext(AuthContext);
+//   const [cargada, setCargada] = useState(true);
+//   const navigate = useNavigate();
+//   const initialState = {
+//     url: "",
+//     descripcion: "",
+//     name: "",
+//   };
+//   const [values, setValues] = useState(initialState);
+//   const collectioUser = collection(db, user.displayName);
+//   const Newvalues = { ...values, Images: urlImgDes };
+//   console.log(Newvalues);
+
+//   // img
+//   const handelFiles = async (e) => {
+//     const archivo = e.target.files[0];
+//     const refArchivo = ref(storage, `documentos/${archivo.name}`);
+//     try {
+//       await uploadBytes(refArchivo, archivo);
+//       setUrlImgDes(await getDownloadURL(refArchivo));
+//       console.log("URL de IIMG => ", urlImgDes);
+//       toast.success("Imagen Cargada con exito 👍🏼🏆");
+//     } catch (error) {
+//       toast.error("Error: ", error);
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     const selectedFiles = e.target.querySelector('input[type="file"]').value;
+//     const { name, url, descripcion } = values;
+//     e.preventDefault();
+//     console.log(e);
+//     console.log(selectedFiles);
+
+//     if (url || selectedFiles) {
+//       setCargada(!cargada);
+//       console.log(cargada);
+//     } else {
+//       toast.error("Error: Por favor ingrese una URL o seleccione un archivo");
+//       return;
+//     }
+
+//     if (name === "" || descripcion === "") {
+//       toast.error("Error: Por favor llene todos los campos");
+//     } else {
+//       if (!cargada) {
+//         toast.error("Error: Por favor llene los campos requeridos URL o FILES");
+//       } else {
+//         try {
+//           const docRef = await addDoc(collectioUser, Newvalues);
+//           console.log("Documento agregado con ID:", docRef.id);
+//           setValues(initialState);
+//           navigate("/");
+//           toast.success("Producto agregado con éxito", {
+//             toastClassName: "custom-toast",
+//           });
+//         } catch (error) {
+//           console.error("Error al agregar el documento:", error);
+//           toast.error("Error", error);
+//         }
+//       }
+//     }
+//   };
+
+//   const handelChange = async (e) => {
+//     const { name, value } = e.target;
+//     setValues({ ...values, [name]: value });
+//   };
+
+//   return (
+//     <div className="containerFormAdd">
+//       <div className="confor">
+//         <h1>Agrega una imagen</h1>
+//         <form className="formFb" onSubmit={handleSubmit}>
+//           <label htmlFor="url" className="label">
+//             <img src={url} alt="" className="image" />
+//             <input
+//               type="text"
+//               name="url"
+//               placeholder="Url de la imagen"
+//               value={values.url}
+//               onChange={handelChange}
+//               style={{ marginBottom: 0 }}
+//               id="url"
+//             />
+//           </label>
+//           <label htmlFor="name" className="label">
+//             <img src={book} alt="" className="image" />
+//             <input
+//               type="text"
+//               name="name"
+//               placeholder="Nombre de la imagen"
+//               value={values.name}
+//               onChange={handelChange}
+//               style={{ marginBottom: 0 }}
+//               id="name"
+//             />
+//           </label>
+//           <label htmlFor="descripcion" className="label">
+//             <img src={dep} alt="" className="image" />
+//             <input
+//               type="text"
+//               name="descripcion"
+//               placeholder="Descripcion de la imagen"
+//               value={values.descripcion}
+//               onChange={handelChange}
+//               style={{ marginBottom: 0 }}
+//               id="descripcion"
+//             />
+//           </label>
+//           <div className="centrar or">
+//             <hr />
+//             <p>Or</p>
+//             <hr />
+//           </div>
+//           <div>
+//             <input
+//               type="file"
+//               id="file"
+//               name="file"
+//               placeholder="Agregar Imagen"
+//               onChange={handelFiles}
+//             />
+//           </div>
+//           <button className="centrar buttonsutmi">
+//             <img src={save} alt="" />
+//             Save
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Form;
 
 // import React, { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";

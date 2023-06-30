@@ -2,57 +2,204 @@ import React, { useState, useEffect, useContext } from "react";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db, collectionRef } from "../../firebase";
 import { AuthContext } from "../AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
+import notImage from "../../img/NoImage.png";
+import ButtonAddI from "../ButtonAddI";
+import Spiner from "../Spiner";
 
 const Show = () => {
-  const { user } = useContext(AuthContext); // Utiliza AuthContext en lugar de AuthProvider
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const collectionUser = user ? collection(db, user.displayName) : null;
   const [documents, setDocuments] = useState([]);
-  // console.log(documents);
+  const [loading, setLoading] = useState(true); // Variable de estado para controlar la carga
+
   useEffect(() => {
     getDocs(collectionUser)
       .then((querySnapshot) => {
         const docs = [];
         querySnapshot.forEach((doc) => {
-          // Agrega los datos de cada documento a un array
           docs.push({ id: doc.id, ...doc.data() });
         });
         setDocuments(docs);
+        setLoading(false); // Una vez que se^` obtienen los documentos, se detiene la carga
       })
       .catch((error) => {
         console.log("Error al obtener los documentos:", error);
+        setLoading(false); // En caso de error, se detiene la carga
       });
   }, []);
 
+  const handleClick = () => {
+    console.log("Se le dio click");
+  };
+
   return (
-    <div>
-      {documents.length === 0 ? (
-        <p>No hay imágenes o elementos disponibles.</p>
+    <div className="containerShow">
+      <ButtonAddI />
+      {loading ? (
+        // Mostrar el spinner mientras se cargan los datos
+        <Spiner />
+      ) : documents.length === 0 ? (
+        // Mostrar el mensaje si no hay elementos en la base de datos
+        <p>No hay imágenes o elementos disponibles KO.</p>
       ) : (
-        documents.map((doc) => (
-          <Link
-            to={`/Description/${doc.id}`}
-            key={doc.id}
-            className="containerImg"
-          >
-            <div>
+        documents.map((doc) => {
+          let imageUrl = doc.Images ? doc.Images : doc.url ? doc.url : notImage;
+
+          if (imageUrl.startsWith("https://")) {
+            console.log("La URL contiene 'https://' al principio");
+          } else {
+            console.log("La URL no contiene 'https://' al principio");
+            imageUrl = notImage;
+          }
+
+          return (
+            <div
+              onClick={() => navigate(`/Description/${doc.id}`)}
+              key={doc.id}
+              className="containerImg"
+              style={{
+                backgroundImage: `url(${imageUrl})`,
+                backgroundPosition: "center",
+              }}
+            >
               <h3>{doc.name}</h3>
-              <h5>{doc.url}</h5>
-              <p>{doc.descripcion}</p>
-              {doc.Images && (
-                <img
-                  src={doc.Images}
-                  alt="images"
-                  style={{ width: "13pc", height: "13pc" }}
-                />
-              )}
             </div>
-          </Link>
-        ))
+          );
+        })
       )}
     </div>
   );
 };
 
 export default Show;
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { collection, addDoc, getDocs } from "firebase/firestore";
+// import { db, collectionRef } from "../../firebase";
+// import { AuthContext } from "../AuthContext";
+// import { Link, useNavigate } from "react-router-dom";
+// import "./index.css";
+// import notImage from "../../img/NoImage.png";
+
+// const Show = () => {
+//   const navigate = useNavigate();
+//   const { user } = useContext(AuthContext);
+//   const collectionUser = user ? collection(db, user.displayName) : null;
+//   const [documents, setDocuments] = useState([]);
+
+//   useEffect(() => {
+//     getDocs(collectionUser)
+//       .then((querySnapshot) => {
+//         const docs = [];
+//         querySnapshot.forEach((doc) => {
+//           docs.push({ id: doc.id, ...doc.data() });
+//         });
+//         setDocuments(docs);
+//       })
+//       .catch((error) => {
+//         console.log("Error al obtener los documentos:", error);
+//       });
+//   }, []);
+
+//   const handleClick = () => {
+//     console.log("Se le dio click");
+//   };
+
+//   return (
+//     <div className="containerShow">
+//       {documents.length === 0 ? (
+//         <p>No hay imágenes o elementos disponibles.</p>
+//       ) : (
+//         documents.map((doc) => {
+//           let imageUrl = doc.Images ? doc.Images : doc.url ? doc.url : notImage;
+
+//           if (imageUrl.startsWith("https://")) {
+//             console.log("La URL contiene 'https://' al principio");
+//           } else {
+//             console.log("La URL no contiene 'https://' al principio");
+//             imageUrl = notImage;
+//           }
+
+//           return (
+//             <div
+//               onClick={() => navigate(`/Description/${doc.id}`)}
+//               key={doc.id}
+//               className="containerImg"
+//               style={{
+//                 backgroundImage: `url(${imageUrl})`,
+//                 backgroundPosition: "center",
+//               }}
+//             >
+//               <h3>{doc.name}</h3>
+//             </div>
+//           );
+//         })
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Show;
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { collection, addDoc, getDocs } from "firebase/firestore";
+// import { db, collectionRef } from "../../firebase";
+// import { AuthContext } from "../AuthContext";
+// import { Link, useNavigate } from "react-router-dom";
+// import "./index.css";
+// import notImage from "../../img/NoImage.png";
+
+// const Show = () => {
+//   const navigate = useNavigate();
+//   const { user } = useContext(AuthContext); // Utiliza AuthContext en lugar de AuthProvider
+//   const collectionUser = user ? collection(db, user.displayName) : null;
+//   const [documents, setDocuments] = useState([]);
+//   // console.log(documents);
+//   useEffect(() => {
+//     getDocs(collectionUser)
+//       .then((querySnapshot) => {
+//         const docs = [];
+//         querySnapshot.forEach((doc) => {
+//           // Agrega los datos de cada documento a un array
+//           docs.push({ id: doc.id, ...doc.data() });
+//         });
+//         setDocuments(docs);
+//       })
+//       .catch((error) => {
+//         console.log("Error al obtener los documentos:", error);
+//       });
+//   }, []);
+//   const handelCLick = () => {
+//     console.log("se  le dio click");
+//   };
+//   return (
+//     <div>
+//       {documents.length === 0 ? (
+//         <p>No hay imágenes o elementos disponibles.</p>
+//       ) : (
+//         documents.map((doc) => (
+//           <div
+//             onClick={() => navigate(`/Description/${doc.id}`)}
+//             key={doc.id}
+//             className="containerImg"
+//             style={{
+//               backgroundImage: `url(${
+//                 doc.Images ? doc.Images : doc.url ? doc.url : notImage
+//               })`,
+//               backgroundPosition: "center",
+//             }}
+//           >
+//             <h1>{doc.name}</h1>
+
+//             <p>{doc.descripcion}</p>
+//           </div>
+//         ))
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Show;

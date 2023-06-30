@@ -57,6 +57,18 @@ const Nav = () => {
             )}
           </div>
         </div>
+        {isLoggedIn && (
+          <>
+            <div
+              className={`menu-toggle ${isOpen ? "open" : ""}`}
+              onClick={toggleMenu}
+            >
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </div>
+          </>
+        )}
         <div
           className={`center ${isLoggedIn ? "navMovil" : ""} ${
             isOpen ? "show" : ""
@@ -103,20 +115,6 @@ const Nav = () => {
             )}
           </div>
         </div>
-        {isLoggedIn ? (
-          <>
-            <div
-              className={`menu-toggle ${isOpen ? "open" : ""}`}
-              onClick={toggleMenu}
-            >
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
       </div>
     </>
   );

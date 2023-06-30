@@ -1,0 +1,84 @@
+.containerDele{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.btnAdd{
+    width: 3pc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 33pc;
+    left: 1pc;
+    padding: 6px;
+    border-radius: 10px;
+    color: white;
+    background-color: #232323;
+}
+
+
+@media screen and (max-width:850px) {
+    .btnAdd{
+        top: 69pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-height:950px) {
+    .btnAdd{
+        top: 51pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-width:450px) {
+    .btnAdd{
+        top: 37pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-width:399px) {
+    .btnAdd{
+        top: 48pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-width:370px) {
+    .btnAdd{
+        top: 41pc;
+        left: 1pc;
+    }
+}
+
+@media screen and (max-height:1500px) {
+    .btnAdd{
+        top: 79pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-height:1050px) {
+    .btnAdd{
+        top: 59pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-height:1000px) {
+    .btnAdd{
+        top: 52pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-height:850px) {
+    .btnAdd{
+        top: 48pc;
+        left: 1pc;
+    }
+}
+@media screen and (max-height:700px) {
+    .btnAdd{
+        top: 37pc;
+        left: 1pc;
+    }
+}

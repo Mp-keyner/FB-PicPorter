@@ -4,6 +4,7 @@ import { doc, deleteDoc, collection } from "firebase/firestore";
 import { db, collectionRef } from "../firebase";
 import { toast } from "react-toastify";
 import { AuthContext } from "../components/AuthContext";
+import picture from "../img/iconimageBlack.svg";
 
 const Delete = () => {
   const { user } = useContext(AuthContext);
@@ -28,8 +29,10 @@ const Delete = () => {
   }, [id]);
 
   return (
-    <div>
-      <h1>Eliminando dato {id}</h1>
+    <div className="containerDele">
+      <h1>Eliminando dato</h1>
+      <p>{id}</p>
+      <img src={picture} alt="" />
       {/* Puedes agregar una animación o mensaje de carga aquí */}
     </div>
   );

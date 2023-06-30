@@ -11,6 +11,9 @@
     padding: 0 1pc;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+
 }
 .containerLogout{
     display: flex;
@@ -63,20 +66,23 @@ li{
         margin-left: 0pc;
     }
 }
-@media screen and (max-width:400px) {
+@media screen and (max-width:600px) {
     .nav{
         padding: 0 10px;
-    }
+    } 
     .navMovil{
         transition: all 0.6s ease-in-out;
-        padding: 2pc;
-        background: #232323;
-        position: fixed;
-        flex-direction: column;
-        top: 6pc;
-        right: -13pc;
-        height: 76%;
-        justify-content: space-between;
+    padding: 2pc;
+    background: #232323;
+    position: fixed; /* Cambia la posición a 'fixed' */
+    top: 6pc;
+    /* right: 0;Ajusta el valor para que esté pegado a la derecha */
+    z-index: 999;
+    flex-direction: column;
+    /* top: 6pc; */
+    right: -13pc;
+    height: 77vh;
+    justify-content: space-between;
     }
     .ulMovil{
         flex-direction: column;
