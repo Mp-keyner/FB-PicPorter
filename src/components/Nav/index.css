@@ -82,7 +82,7 @@ li{
     /* top: 6pc; */
     right: -13pc;
     height: 76vh;
-    justify-content: space-between;
+    justify-content: space-around;
     }
     .ulMovil{
         flex-direction: column;
