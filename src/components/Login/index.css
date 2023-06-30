@@ -88,7 +88,7 @@
   input[type="email"],
   input[type="password"],
   input[type="submit"],
-  select {
+  select { 
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -130,13 +130,13 @@
         width: 100%;
     }
     .containerDep{
-        height: 83.9vh;
+        height: 25pc;
     }
     .derecha{
         position: fixed;
         background-color: white ;
-        top: 35pc;
-        height: 83.9vh;
+        top: 31pc;
+        height: 87vh;
     }
     .containerForm{
         gap: 2pc;

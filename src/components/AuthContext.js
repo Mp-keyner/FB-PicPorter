@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     const flecha = document.querySelector(".flecha");
 
     if (isClicked) {
-      element.style.top = "35pc"; // Restaurar al valor original (vacío para eliminar inline style)
+      element.style.top = "31pc"; // Restaurar al valor original (vacío para eliminar inline style)
       flecha.style.transform = "rotate(0deg)";
     } else {
       element.style.top = "6pc"; // Cambia '10px' por el valor deseado

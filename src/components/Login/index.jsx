@@ -30,7 +30,7 @@ const Login = () => {
           </div>
           <Google />
           <div className="centrar or">
-            <hr />
+            <hr /> 
             <p>Or</p>
             <hr />
           </div>
