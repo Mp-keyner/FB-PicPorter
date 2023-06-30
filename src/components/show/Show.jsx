@@ -33,13 +33,12 @@ const Show = () => {
   }, []);
   return (
     <div className="containerShow">
-      <ButtonAddI />
       {loading ? (
         // Mostrar el spinner mientras se cargan los datos
         <Spiner />
       ) : documents.length === 0 ? (
         // Mostrar el mensaje si no hay elementos en la base de datos
-        <div className="notData">
+        <div className="notData" onClick={() => navigate("/New")}>
           <h1>
             ¡Empieza a almacenar recuerdos y las mejores experiencias AQUI!!
           </h1>
@@ -47,12 +46,6 @@ const Show = () => {
             name="image-add"
             size="cssSize"
             style={{ width: "10pc" }}
-          ></box-icon>
-          <box-icon
-            name="left-arrow-alt"
-            size="cssSize"
-            style={{ width: "10pc" }}
-            bx-rotate-0
           ></box-icon>
         </div>
       ) : (

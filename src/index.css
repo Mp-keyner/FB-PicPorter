@@ -91,3 +91,9 @@
         left: 1pc;
     }
 }
+@media screen and (max-height:650px) {
+    .btnAdd{
+        top: 33pc;
+        left: 1pc;
+    }
+}

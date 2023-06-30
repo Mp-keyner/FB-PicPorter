@@ -51,7 +51,7 @@ const Nav = () => {
               ""
             ) : (
               <>
-                <p>Welcome </p>
+                <p>!HI¡</p>
                 <h2>{user.displayName}</h2>
               </>
             )}

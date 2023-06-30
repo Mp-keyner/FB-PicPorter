@@ -45,7 +45,12 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const selectedFiles = e.target.querySelector('input[type="file"]').value;
-    const { name, url } = values;
+    const { name, url, descripcion } = values;
+
+    if (name.trim().length === 0 || descripcion.trim().length === 0) {
+      toast.error("Error: Por favor, llene los campos requeridos");
+      return;
+    }
 
     if (url && selectedFiles) {
       toast.error(
@@ -65,6 +70,7 @@ const Form = () => {
       toast.error("Error: Por favor, ingrese una URL o seleccione un archivo");
       return;
     }
+
     if (!cargada) {
       toast.error("Error: Por favor, llene los campos requeridos URL o FILES");
       return;

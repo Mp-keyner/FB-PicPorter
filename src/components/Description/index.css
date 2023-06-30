@@ -9,7 +9,7 @@
 }
 .izquierda{
     width: 50%;
-    padding: 3pc;
+    padding: 3pc 2pc;
     display: flex;
     flex-direction: column;
     gap: 1pc;
@@ -17,7 +17,7 @@
 }
 .izquierdaUP{
     width: 40%;
-    padding: 3pc;
+    padding: 3pc 2pc;
     display: flex;
     flex-direction: column;
     gap: 1pc;
@@ -67,7 +67,6 @@
     }
     .izquierda{
         width: 84%;
-        height: 100vh;
     }
     .izquierdaUP{
         width: 99%;
