@@ -204,7 +204,9 @@ const UpdateData = () => {
                 Selecciona una imagen
               </label>
             </div>
-            <button className="buttonsutmi">Reset</button>
+            <button className="buttonsutmi" onClick={resetFile}>
+              Reset
+            </button>
           </div>
           <button
             className="centrar buttonsutmi"

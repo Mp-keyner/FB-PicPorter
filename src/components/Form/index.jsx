@@ -27,7 +27,6 @@ const Form = () => {
   const [values, setValues] = useState(initialState);
   const collectioUser = collection(db, user.displayName);
   const Newvalues = { ...values, Images: urlImgDes };
-  console.log(Newvalues);
 
   // img
   const handelFiles = async (e) => {
@@ -36,7 +35,6 @@ const Form = () => {
     try {
       await uploadBytes(refArchivo, archivo);
       setUrlImgDes(await getDownloadURL(refArchivo));
-      console.log("URL de IMG => ", urlImgDes);
       toast.success("Imagen cargada con éxito 👍🏼🏆");
       setBotonHabilitado(true);
     } catch (error) {
@@ -74,14 +72,12 @@ const Form = () => {
 
     try {
       const docRef = await addDoc(collectioUser, Newvalues);
-      console.log("Documento agregado con ID:", docRef.id);
       setValues(initialState);
       navigate("/");
       toast.success("Producto agregado con éxito", {
         toastClassName: "custom-toast",
       });
     } catch (error) {
-      console.error("Error al agregar el documento:", error);
       toast.error("Error: " + error);
     }
   };

@@ -5,8 +5,6 @@ import Show from "./show/Show";
 
 export function ProtectedRoute({ children }) {
   const { isLoggedIn, logout, user } = useContext(AuthContext); // Utiliza AuthContext en lugar de AuthProvider
-  console.log("estado de user", isLoggedIn);
-  console.log("Date user", user);
   if (isLoggedIn) {
     return (
       <>

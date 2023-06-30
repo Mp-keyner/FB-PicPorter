@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import logoGoogle from "../../img/googleIcon.svg";
 import "./index.css";
+import { toast } from "react-toastify";
 
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
@@ -21,7 +22,7 @@ const Google = () => {
       })
       .catch((error) => {
         // Error al iniciar sesión con Google
-        console.error("Error al iniciar sesión con Google:", error);
+        toast.error("Error al iniciar sesión con Google" + error);
       });
   };
 

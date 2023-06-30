@@ -19,6 +19,12 @@
     color: white;
     background-color: #232323;
 }
+.notData{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    grid-column: 4;
+}
 
 
 @media screen and (max-width:850px) {
@@ -37,6 +43,9 @@
     .btnAdd{
         top: 37pc;
         left: 1pc;
+    }
+    .notData{
+        grid-column: 1;
     }
 }
 @media screen and (max-width:399px) {

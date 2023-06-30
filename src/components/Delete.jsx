@@ -16,11 +16,9 @@ const Delete = () => {
     const deleteData = async () => {
       try {
         await deleteDoc(doc(collectioUser, id));
-        console.log("Documento eliminado correctamente");
         toast.success("Producto eliminado con éxito"); // Mostrar notificación de éxito
         navigate("/");
       } catch (error) {
-        console.error("Error al eliminar el documento:", error);
         toast.error("Error al eliminar el producto"); // Mostrar notificación de error
       }
     };

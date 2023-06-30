@@ -4,7 +4,7 @@ import "./index.css";
 const Spiner = () => {
   return (
     <div className="contaLoader">
-      <div class="loader">Loading...</div>
+      <div className="loader">Loading...</div>
     </div>
   );
 };

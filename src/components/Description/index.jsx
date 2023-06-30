@@ -27,9 +27,8 @@ const Description = () => {
     : notImage;
 
   if (imageUrl.startsWith("https://")) {
-    console.log("La URL contiene 'https://' al principio");
+    console.log("");
   } else {
-    console.log("La URL no contiene 'https://' al principio");
     imageUrl = notImage;
   }
   useEffect(() => {
@@ -45,7 +44,6 @@ const Description = () => {
 
     fetchData();
   }, [id]);
-  console.log(values);
   return (
     <div className="containerDescr">
       <div className="izquierda">
