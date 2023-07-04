@@ -71,17 +71,24 @@ const Show = () => {
             }
 
             return (
-              <div
-                onClick={() => navigate(`/Description/${doc.id}`)}
-                key={doc.id}
-                className="containerImg"
-                style={{
-                  backgroundImage: `url(${imageUrl})`,
-                  backgroundPosition: "center",
-                }}
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 100 }}
+                transition={{ duration: 1, delay: 0.3 }}
               >
-                <h3>{doc.name}</h3>
-              </div>
+                <div
+                  onClick={() => navigate(`/Description/${doc.id}`)}
+                  key={doc.id}
+                  className="containerImg"
+                  style={{
+                    backgroundImage: `url(${imageUrl})`,
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <h3>{doc.name}</h3>
+                </div>
+              </motion.div>
             );
           })
         )}
