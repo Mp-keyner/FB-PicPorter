@@ -5,6 +5,7 @@ import { db, collectionRef } from "../firebase";
 import { toast } from "react-toastify";
 import { AuthContext } from "../components/AuthContext";
 import picture from "../img/iconimageBlack.svg";
+import { motion } from "framer-motion";
 
 const Delete = () => {
   const { user } = useContext(AuthContext);
@@ -27,12 +28,19 @@ const Delete = () => {
   }, [id]);
 
   return (
-    <div className="containerDele">
-      <h1>Eliminando dato</h1>
-      <p>{id}</p>
-      <img src={picture} alt="" />
-      {/* Puedes agregar una animación o mensaje de carga aquí */}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+    >
+      <div className="containerDele">
+        <h1>Eliminando dato</h1>
+        <p>{id}</p>
+        <img src={picture} alt="" />
+        {/* Puedes agregar una animación o mensaje de carga aquí */}
+      </div>
+    </motion.div>
   );
 };
 

@@ -7,6 +7,7 @@ import { AuthContext } from "../AuthContext";
 import notImage from "../../img/NoImage.png";
 import book from "../../img/book.svg";
 import dep from "../../img/dep.svg";
+import { motion } from "framer-motion";
 
 const Description = () => {
   const navigate = useNavigate();
@@ -45,43 +46,50 @@ const Description = () => {
     fetchData();
   }, [id]);
   return (
-    <div className="containerDescr">
-      <div className="izquierda">
-        <div>
-          <div className="centrar">
-            <img src={dep} alt="" />
-            <h3>Nombre de la Imagen</h3>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+    >
+      <div className="containerDescr">
+        <div className="izquierda">
+          <div>
+            <div className="centrar">
+              <img src={dep} alt="" />
+              <h3>Nombre de la Imagen</h3>
+            </div>
+            <p>{values.name}</p>
           </div>
-          <p>{values.name}</p>
-        </div>
-        <div>
-          <div className="centrar">
-            <img src={book} alt="" />
-            <h3>Descripcion de la Imagen</h3>
+          <div>
+            <div className="centrar">
+              <img src={book} alt="" />
+              <h3>Descripcion de la Imagen</h3>
+            </div>
+            <p>{values.descripcion}</p>
           </div>
-          <p>{values.descripcion}</p>
+          <div className="centrar containerBtn">
+            <Link to={`/update/${id}`} className="a">
+              <p className="verde">Update</p>
+            </Link>
+            <Link to={`/Delete/${id}`} className="a">
+              <p className="rojo">Delete</p>
+            </Link>
+          </div>
         </div>
-        <div className="centrar containerBtn">
-          <Link to={`/update/${id}`} className="a">
-            <p className="verde">Update</p>
-          </Link>
-          <Link to={`/Delete/${id}`} className="a">
-            <p className="rojo">Delete</p>
-          </Link>
+        <div className="derechad">
+          <div
+            style={{
+              backgroundImage: `url(${imageUrl})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              width: "90%",
+              height: "90%",
+            }}
+          ></div>
         </div>
       </div>
-      <div className="derechad">
-        <div
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            width: "90%",
-            height: "90%",
-          }}
-        ></div>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

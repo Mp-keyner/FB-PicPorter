@@ -6,6 +6,7 @@ import { db, uploadImage, storage } from "../../firebase";
 import { AuthContext } from "../AuthContext";
 import { toast } from "react-toastify";
 import "./index.css";
+import { motion } from "framer-motion";
 
 import url from "../../img/noun-url-1244044.svg";
 import book from "../../img/book.svg";
@@ -101,79 +102,86 @@ const Form = () => {
   };
 
   return (
-    <div className="containerFormAdd">
-      <div className="confor">
-        <h1>Agrega una imagen</h1>
-        <form className="formFb" onSubmit={handleSubmit}>
-          <label htmlFor="url" className="label">
-            <img src={url} alt="" className="image" />
-            <input
-              type="text"
-              name="url"
-              placeholder="Url de la imagen"
-              value={values.url}
-              onChange={handelChange}
-              style={{ marginBottom: 0 }}
-              id="url"
-            />
-          </label>
-          <label htmlFor="name" className="label">
-            <img src={book} alt="" className="image" />
-            <input
-              type="text"
-              name="name"
-              placeholder="Nombre de la imagen"
-              value={values.name}
-              onChange={handelChange}
-              style={{ marginBottom: 0 }}
-              id="name"
-            />
-          </label>
-          <label htmlFor="descripcion" className="label">
-            <img src={dep} alt="" className="image" />
-            <input
-              type="text"
-              name="descripcion"
-              placeholder="Descripcion de la imagen"
-              value={values.descripcion}
-              onChange={handelChange}
-              style={{ marginBottom: 0 }}
-              id="descripcion"
-            />
-          </label>
-          <div className="centrar or">
-            <hr />
-            <p>Or</p>
-            <hr />
-          </div>
-          <div className="centrar">
-            <div class="input-file">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+    >
+      <div className="containerFormAdd">
+        <div className="confor">
+          <h1>Agrega una imagen</h1>
+          <form className="formFb" onSubmit={handleSubmit}>
+            <label htmlFor="url" className="label">
+              <img src={url} alt="" className="image" />
               <input
-                type="file"
-                id="file"
-                name="file"
-                placeholder="Agregar Imagen"
-                onChange={handelFiles}
+                type="text"
+                name="url"
+                placeholder="Url de la imagen"
+                value={values.url}
+                onChange={handelChange}
+                style={{ marginBottom: 0 }}
+                id="url"
               />
-              <label for="file" class="input-file-label centrar">
-                <img src={docI} alt="" />
-                Seleccionar archivo
-              </label>
+            </label>
+            <label htmlFor="name" className="label">
+              <img src={book} alt="" className="image" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre de la imagen"
+                value={values.name}
+                onChange={handelChange}
+                style={{ marginBottom: 0 }}
+                id="name"
+              />
+            </label>
+            <label htmlFor="descripcion" className="label">
+              <img src={dep} alt="" className="image" />
+              <input
+                type="text"
+                name="descripcion"
+                placeholder="Descripcion de la imagen"
+                value={values.descripcion}
+                onChange={handelChange}
+                style={{ marginBottom: 0 }}
+                id="descripcion"
+              />
+            </label>
+            <div className="centrar or">
+              <hr />
+              <p>Or</p>
+              <hr />
             </div>
-            <button className="buttonsutmi" onClick={resetFile}>
-              Reset
+            <div className="centrar">
+              <div class="input-file">
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  placeholder="Agregar Imagen"
+                  onChange={handelFiles}
+                />
+                <label for="file" class="input-file-label centrar">
+                  <img src={docI} alt="" />
+                  Seleccionar archivo
+                </label>
+              </div>
+              <button className="buttonsutmi" onClick={resetFile}>
+                Reset
+              </button>
+            </div>
+            <button
+              className="centrar buttonsutmi"
+              style={{ display: botonHabilitado ? "flex" : "none" }}
+            >
+              <img src={save} alt="" />
+              Save
             </button>
-          </div>
-          <button
-            className="centrar buttonsutmi"
-            style={{ display: botonHabilitado ? "flex" : "none" }}
-          >
-            <img src={save} alt="" />
-            Save
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

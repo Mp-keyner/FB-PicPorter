@@ -9,6 +9,7 @@ import Description from "./components/Description";
 import Delete from "./components/Delete";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AnimatePresence } from "framer-motion";
 import {
   db,
   collection,
@@ -38,28 +39,30 @@ function App() {
     <>
       <div className="container">
         <Layout>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Login />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/Home"
-              element={
-                <ProtectedRoute>
-                  <Show />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/New" element={<Form addOredit={addOredit} />} />
-            <Route path="/Description/:id" element={<Description />} />
-            <Route path="/Update/:id" element={<Update />} />
-            <Route path="/Delete/:id" element={<Delete />} />
-          </Routes>
+          <AnimatePresence>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Login />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/Home"
+                element={
+                  <ProtectedRoute>
+                    <Show />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/New" element={<Form addOredit={addOredit} />} />
+              <Route path="/Description/:id" element={<Description />} />
+              <Route path="/Update/:id" element={<Update />} />
+              <Route path="/Delete/:id" element={<Delete />} />
+            </Routes>
+          </AnimatePresence>
         </Layout>
         <ToastContainer />
       </div>

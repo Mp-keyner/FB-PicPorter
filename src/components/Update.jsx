@@ -10,6 +10,7 @@ import save from "../img/save.svg";
 import dep from "../img/dep.svg";
 import book from "../img/book.svg";
 import docI from "../img/docI.svg";
+import { motion } from "framer-motion";
 
 const UpdateData = () => {
   const navigate = useNavigate();
@@ -128,96 +129,103 @@ const UpdateData = () => {
   };
 
   return (
-    <div className="containerDescr">
-      <div className="izquierdaUP">
-        <div className="condep">
-          <div>
-            <div className="centrar">
-              <img src={dep} alt="" />
-              <h2>Actualizar dato</h2>
-            </div>
-            <span>{id}</span>
-          </div>
-          {docSnapshot && (
-            <>
-              <h3>{docSnapshot.name}</h3>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+    >
+      <div className="containerDescr">
+        <div className="izquierdaUP">
+          <div className="condep">
+            <div>
               <div className="centrar">
-                <img src={book} alt="" />
-                <h3>Descripcion de la Imagen</h3>
+                <img src={dep} alt="" />
+                <h2>Actualizar dato</h2>
               </div>
-              <p>{docSnapshot.descripcion}</p>
-            </>
-          )}
+              <span>{id}</span>
+            </div>
+            {docSnapshot && (
+              <>
+                <h3>{docSnapshot.name}</h3>
+                <div className="centrar">
+                  <img src={book} alt="" />
+                  <h3>Descripcion de la Imagen</h3>
+                </div>
+                <p>{docSnapshot.descripcion}</p>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="derechad">
+          <form onSubmit={handleSubmit} className="formFb">
+            <label htmlFor="url" className="label">
+              <img src={url} alt="" className="image" />
+              <input
+                type="text"
+                name="url"
+                placeholder="Url de la imagen"
+                value={values.url}
+                onChange={handleChange}
+                style={{ marginBottom: 0 }}
+              />
+            </label>
+            <label htmlFor="name" className="label">
+              <img src={book} alt="" className="image" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre de la imagen"
+                value={values.name}
+                onChange={handleChange}
+                style={{ marginBottom: 0 }}
+              />
+            </label>
+            <label htmlFor="descripcion" className="label">
+              <img src={dep} alt="" className="image" />
+              <input
+                type="text"
+                name="descripcion"
+                placeholder="Descripcion de la imagen"
+                value={values.descripcion}
+                onChange={handleChange}
+                style={{ marginBottom: 0 }}
+              />
+            </label>
+            <div className="centrar or">
+              <hr />
+              <p>Or</p>
+              <hr />
+            </div>
+            <div className="centrar">
+              <div className="input-file">
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  placeholder="Agregar Imagen"
+                  onChange={updateImage}
+                />
+                <label for="file" class="input-file-label centrar">
+                  <img src={docI} alt="" />
+                  Selecciona una imagen
+                </label>
+              </div>
+              <button className="buttonsutmi" onClick={resetFile}>
+                Reset
+              </button>
+            </div>
+            <button
+              className="centrar buttonsutmi"
+              style={{ display: botonHabilitado ? "flex" : "none" }}
+            >
+              <img src={save} alt="" />
+              Save
+            </button>
+          </form>
         </div>
       </div>
-      <div className="derechad">
-        <form onSubmit={handleSubmit} className="formFb">
-          <label htmlFor="url" className="label">
-            <img src={url} alt="" className="image" />
-            <input
-              type="text"
-              name="url"
-              placeholder="Url de la imagen"
-              value={values.url}
-              onChange={handleChange}
-              style={{ marginBottom: 0 }}
-            />
-          </label>
-          <label htmlFor="name" className="label">
-            <img src={book} alt="" className="image" />
-            <input
-              type="text"
-              name="name"
-              placeholder="Nombre de la imagen"
-              value={values.name}
-              onChange={handleChange}
-              style={{ marginBottom: 0 }}
-            />
-          </label>
-          <label htmlFor="descripcion" className="label">
-            <img src={dep} alt="" className="image" />
-            <input
-              type="text"
-              name="descripcion"
-              placeholder="Descripcion de la imagen"
-              value={values.descripcion}
-              onChange={handleChange}
-              style={{ marginBottom: 0 }}
-            />
-          </label>
-          <div className="centrar or">
-            <hr />
-            <p>Or</p>
-            <hr />
-          </div>
-          <div className="centrar">
-            <div className="input-file">
-              <input
-                type="file"
-                id="file"
-                name="file"
-                placeholder="Agregar Imagen"
-                onChange={updateImage}
-              />
-              <label for="file" class="input-file-label centrar">
-                <img src={docI} alt="" />
-                Selecciona una imagen
-              </label>
-            </div>
-            <button className="buttonsutmi" onClick={resetFile}>
-              Reset
-            </button>
-          </div>
-          <button
-            className="centrar buttonsutmi"
-            style={{ display: botonHabilitado ? "flex" : "none" }}
-          >
-            <img src={save} alt="" />
-            Save
-          </button>
-        </form>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 

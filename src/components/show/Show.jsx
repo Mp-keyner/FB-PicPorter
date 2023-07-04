@@ -8,6 +8,7 @@ import notImage from "../../img/NoImage.png";
 import ButtonAddI from "../ButtonAddI";
 import Spiner from "../Spiner";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Show = () => {
   const navigate = useNavigate();
@@ -32,49 +33,60 @@ const Show = () => {
       });
   }, []);
   return (
-    <div className="containerShow">
-      {loading ? (
-        // Mostrar el spinner mientras se cargan los datos
-        <Spiner />
-      ) : documents.length === 0 ? (
-        // Mostrar el mensaje si no hay elementos en la base de datos
-        <div className="notData" onClick={() => navigate("/New")}>
-          <h1>
-            ¡Empieza a almacenar recuerdos y las mejores experiencias AQUI!!
-          </h1>
-          <box-icon
-            name="image-add"
-            size="cssSize"
-            style={{ width: "10pc" }}
-          ></box-icon>
-        </div>
-      ) : (
-        documents.map((doc) => {
-          let imageUrl = doc.Images ? doc.Images : doc.url ? doc.url : notImage;
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+    >
+      <div className="containerShow">
+        {loading ? (
+          // Mostrar el spinner mientras se cargan los datos
+          <Spiner />
+        ) : documents.length === 0 ? (
+          // Mostrar el mensaje si no hay elementos en la base de datos
+          <div className="notData" onClick={() => navigate("/New")}>
+            <h1>
+              ¡Empieza a almacenar recuerdos y las mejores experiencias AQUI!!
+            </h1>
+            <box-icon
+              name="image-add"
+              size="cssSize"
+              style={{ width: "10pc" }}
+            ></box-icon>
+          </div>
+        ) : (
+          documents.map((doc) => {
+            let imageUrl = doc.Images
+              ? doc.Images
+              : doc.url
+              ? doc.url
+              : notImage;
 
-          if (imageUrl.startsWith("https://")) {
-            console.log("");
-          } else {
-            console.log("");
-            imageUrl = notImage;
-          }
+            if (imageUrl.startsWith("https://")) {
+              console.log("");
+            } else {
+              console.log("");
+              imageUrl = notImage;
+            }
 
-          return (
-            <div
-              onClick={() => navigate(`/Description/${doc.id}`)}
-              key={doc.id}
-              className="containerImg"
-              style={{
-                backgroundImage: `url(${imageUrl})`,
-                backgroundPosition: "center",
-              }}
-            >
-              <h3>{doc.name}</h3>
-            </div>
-          );
-        })
-      )}
-    </div>
+            return (
+              <div
+                onClick={() => navigate(`/Description/${doc.id}`)}
+                key={doc.id}
+                className="containerImg"
+                style={{
+                  backgroundImage: `url(${imageUrl})`,
+                  backgroundPosition: "center",
+                }}
+              >
+                <h3>{doc.name}</h3>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </motion.div>
   );
 };
 
