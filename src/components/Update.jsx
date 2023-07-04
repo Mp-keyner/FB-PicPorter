@@ -46,7 +46,11 @@ const UpdateData = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const selectedFiles = e.target.querySelector('input[type="file"]').value;
-    const { name, url } = values;
+    const { name, url, descripcion } = values;
+    if (name.trim().length === 0 || descripcion.trim().length === 0) {
+      toast.error("Error: Por favor, llene los campos requeridos");
+      return;
+    }
     if (url && selectedFiles) {
       toast.error(
         "Error: Por favor, seleccione solo una opción: URL o archivo"
