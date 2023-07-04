@@ -5,6 +5,7 @@ import logoko from "../../img/logoKo.svg";
 import { AuthContext } from "../AuthContext";
 import imgIcon from "../../img/94999.png";
 import flecha from "../../img/flechaArriba.svg";
+import SignUp from "../SignUp";
 
 const Login = () => {
   const { Wiev } = useContext(AuthContext); // Utiliza AuthContext en lugar de AuthProvider
@@ -30,14 +31,14 @@ const Login = () => {
           </div>
           <Google />
           <div className="centrar or">
-            <hr /> 
+            <hr />
             <p>Or</p>
             <hr />
           </div>
           <img src={imgIcon} alt="imageIcon" className="imageIcon" />
           <div class="register">
             <form className="form">
-              <label for="email">Correo Electrónico:</label>
+              <label htmlFor="email">Correo Electrónico:</label>
               <input
                 type="email"
                 id="email"
@@ -45,12 +46,12 @@ const Login = () => {
                 placeholder="Ingresa tu correo electrónico"
                 required
               />
-              <label for="name">Contraseña:</label>
+              <label htmlFor="password">Contraseña:</label>
               <input
                 type="password"
-                id="name"
-                name="name"
-                placeholder="Contra..."
+                id="password"
+                name="password"
+                placeholder="Ingresa tu contraseña"
                 required
               />
               <input type="submit" value="Enviar" />

@@ -19,18 +19,24 @@
 }
 .containerImg:hover{
     background-size: 23pc;
-}
+} 
 @media screen and (max-width:1050px) {
     .containerShow{
         grid-template-columns: repeat(3, 1fr);
     }
-    
+    .notData{
+    grid-column: 3/2;
+
+    }
 }
 @media screen and (max-width:950px) {
     .containerShow{
         grid-template-columns: repeat(2, 1fr);
     }
+    .notData{
+        grid-column: 4;
     
+        }
 }
 @media screen and (max-width:650px) {
     .containerShow{
