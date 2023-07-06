@@ -45,7 +45,7 @@ const Nav = () => {
 
         <div
           className="navMovil center"
-          style={{ top: isOpen ? "48px" : window.screen.height - 53 + "px" }}
+          style={{ top: isOpen ? "48px" : window.screen.height - 92 + "px" }}
         >
           <div className="menuN fondodef">
             {isLoggedIn ? (
