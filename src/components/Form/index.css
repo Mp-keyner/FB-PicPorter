@@ -1,82 +1,89 @@
-.image{
-    width: 2pc;
-} 
-.label{
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.image {
+  width: 2pc;
 }
-.containerFormAdd{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 1pc;
-    height: 86vh;
+.label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.custom-toast{
-    background-color: red;
+.containerFormAdd {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1pc;
+  height: 86vh;
 }
-.confor{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1pc;
-    gap: 1pc;
-    width: 20pc;
+.custom-toast {
+  background-color: red;
 }
-.condep{
-    display: flex;
-    flex-direction: column;
-    padding: 1pc;
-    gap: 1pc;
-    width: 20pc;
+.confor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1pc;
+  gap: 1pc;
+  width: 20pc;
 }
-.buttonsutmi{
-    padding: 0.4pc;
-    border-radius: 10px;
-    background: white
+.condep {
+  display: flex;
+  flex-direction: column;
+  padding: 1pc;
+  gap: 1pc;
+  width: 20pc;
 }
-.formFb{
-    /* width: 100%;  */
-    display: flex;
-    flex-direction: column;
-    width: 21.pc;
-    padding: 1pc;
-    gap: 1pc;
-    /* border: 1px solid; */
-    align-items: center;
+.buttonsutmi {
+  padding: 0.4pc;
+  border-radius: 10px;
+  background: white;
 }
-.centrar{
-    display: flex;
-    align-items: center;
-    gap: 1pc;
+.formFb {
+  /* width: 100%;  */
+  display: flex;
+  flex-direction: column;
+  width: 21pc;
+  padding: 1pc;
+  gap: 1pc;
+  /* border: 1px solid; */
+  align-items: center;
+}
+.centrar {
+  display: flex;
+  align-items: center;
+  gap: 1pc;
 }
 
 /* Update */
 
 .input-file {
-    display: inline-block;
-  }
-  
-  .input-file input[type="file"] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .input-file-label {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #f2f2f2;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .input-file-label:hover {
-    background-color: #e0e0e0;
-  }
-  
+  display: inline-block;
+}
+
+.input-file input[type="file"] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.input-file-label {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-file-label:hover {
+  background-color: #e0e0e0;
+}
+
+::-webkit-scrollbar {
+  width: 0.3pc;
+  height: 0.3pc;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #232323;
+}
